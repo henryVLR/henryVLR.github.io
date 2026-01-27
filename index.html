@@ -935,6 +935,17 @@
 
         updatePassionText();
         setInterval(updatePassionText, 60000);
+
+        // Add this at the end of your script
+        if ('ontouchstart' in window || window.innerWidth <= 768) {
+            // Remove the mousemove event listener for 3D effect
+            cardsContainer.removeEventListener('mousemove', /* your function */);
+            cardsContainer.removeEventListener('mouseleave', /* your function */);
+            cardsContainer.removeEventListener('mouseenter', /* your function */);
+
+            // Reset transform
+            cardsContainer.style.transform = 'translate(-50%, -50%)';
+        }
     </script>
 </body>
 
