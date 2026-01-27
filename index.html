@@ -685,38 +685,37 @@
         window.addEventListener('load', checkFontLoad);
         setTimeout(checkFontLoad, 1000);
 
-        // Dynamic passion text: Convert your GMT+1 time to viewer's timezone
-        // Simpler version: Convert your midnight (00:00 GMT+1) to viewer's local time
+        // Dynamic passion text: Convert your midnight (00:00 GMT+1) to viewer's local time
         const passionText = document.querySelector('.timezone-note');
         const updatePassionText = () => {
-            // Create a date for midnight in Germany (GMT+1)
-            const germanyMidnight = new Date();
+            // Create a date object for your midnight in GMT+1
+            const now = new Date();
 
-            // Get the viewer's current UTC time
-            const viewerUTC = Date.now();
+            // Get the viewer's current time
+            const viewerNow = new Date();
 
-            // Get viewer's timezone offset in minutes
-            const viewerOffset = new Date().getTimezoneOffset(); // in minutes
+            // Calculate the viewer's timezone offset in minutes
+            const viewerOffset = viewerNow.getTimezoneOffset(); // in minutes
+            const viewerOffsetHours = -viewerOffset / 60; // convert to hours
 
-            // Germany is GMT+1, which is UTC+1
-            const germanyOffset = -60; // in minutes (GMT+1 = UTC+1 = -60 minutes from UTC)
+            // Your timezone is GMT+1 (Germany)
+            const yourTimezoneOffset = -1; // GMT+1 means UTC-1
 
-            // Calculate the time difference between Germany and viewer
-            const offsetDifference = germanyOffset - viewerOffset; // in minutes
+            // Calculate the difference between your timezone and viewer's timezone
+            const timeDifferenceHours = yourTimezoneOffset - viewerOffsetHours;
 
-            // Calculate Germany midnight in viewer's local time
-            // Germany midnight in UTC would be 23:00 previous day (since Germany is UTC+1)
-            // So we need to add the viewer's offset to get their local time
+            // Create your midnight time (00:00 in your timezone)
+            // We need to adjust for the time difference
+            const yourMidnightInViewerLocal = new Date();
+            yourMidnightInViewerLocal.setHours(0 - timeDifferenceHours, 0, 0, 0);
 
-            const germanyMidnightUTC = new Date();
-            germanyMidnightUTC.setUTCHours(23, 0, 0, 0); // Germany midnight is 23:00 UTC previous day
+            // Get hours and minutes
+            let hours = yourMidnightInViewerLocal.getHours();
+            const minutes = yourMidnightInViewerLocal.getMinutes();
 
-            // Add viewer's offset to get local time
-            const viewerLocalTime = new Date(germanyMidnightUTC.getTime() + viewerOffset * 60000);
-
-            // Format the time
-            let hours = viewerLocalTime.getHours();
-            const minutes = viewerLocalTime.getMinutes();
+            // Handle cases where hours might be negative or > 23
+            if (hours < 0) hours += 24;
+            if (hours >= 24) hours -= 24;
 
             // Format to 12-hour with AM/PM
             const ampm = hours >= 12 ? 'pm' : 'am';
@@ -724,7 +723,9 @@
             displayHours = displayHours ? displayHours : 12; // the hour '0' should be '12'
             const displayMinutes = minutes.toString().padStart(2, '0');
 
-            passionText.textContent = `my midnight is your ${displayHours}:${displayMinutes}${ampm}`;
+            const formattedTime = `${displayHours}:${displayMinutes}${ampm}`;
+
+            passionText.textContent = `my midnight is your ${formattedTime}`;
         };
 
         // Update on load and every minute
