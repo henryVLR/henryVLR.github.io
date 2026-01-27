@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -12,7 +11,6 @@
             font-weight: normal;
             font-style: normal;
         }
-
         body {
             margin: 0;
             height: 100vh;
@@ -23,18 +21,6 @@
             -ms-user-select: none;
             user-select: none;
         }
-
-        /* #videoBackground {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-            opacity: 1;
-        }*/
-
         #imageBackground {
             position: fixed;
             top: 0;
@@ -45,7 +31,6 @@
             z-index: 0;
             opacity: 1;
         }
-
         .dots-overlay {
             position: fixed;
             top: 0;
@@ -57,7 +42,6 @@
             background: transparent url(https://skulls.lol/assets/skulls_dot.png) repeat 0 0;
             pointer-events: none;
         }
-
         .cards-container {
             position: fixed;
             top: 50%;
@@ -71,7 +55,6 @@
             z-index: 2;
             transition: transform 0.175s ease;
         }
-
         .card {
             width: 500px;
             height: auto;
@@ -84,7 +67,6 @@
             position: relative;
             background: transparent;
         }
-
         .card::before {
             content: '';
             position: absolute;
@@ -96,7 +78,6 @@
             background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             opacity: 0;
         }
-
         .card::after {
             content: '';
             position: absolute;
@@ -110,14 +91,12 @@
             z-index: -1;
             pointer-events: none;
         }
-
         .profile-section {
             display: flex;
             align-items: flex-start;
             gap: 15px;
             margin-bottom: 15px;
         }
-
         .profile-pic {
             width: 82px;
             height: 82px;
@@ -125,13 +104,11 @@
             border: 3px solid rgba(255, 124, 124, 0.5);
             object-fit: cover;
         }
-
         .username {
             font-family: 'Array', monospace, sans-serif;
             font-size: 2rem;
             color: white;
         }
-
         .interests {
             font-family: 'Outfit', Arial, sans-serif;
             color: rgba(255, 255, 255, 0.8);
@@ -141,7 +118,6 @@
             font-weight: 600;
             margin-bottom: 3px;
         }
-
         .timezone-note {
             font-family: 'Outfit', Arial, sans-serif;
             color: rgba(255, 255, 255, 0.6);
@@ -150,7 +126,6 @@
             margin-top: 0;
             font-weight: 300;
         }
-
         .views-and-location {
             position: absolute;
             bottom: 15px;
@@ -163,7 +138,6 @@
             gap: 8px;
             font-weight: 300;
         }
-
         .views-and-location .divider {
             width: 2px;
             height: 15px;
@@ -171,7 +145,6 @@
             border-radius: 100px;
             margin: 0 2px;
         }
-
         .social-icons {
             display: flex;
             gap: 20px;
@@ -179,24 +152,20 @@
             margin-bottom: 40px;
             justify-content: center;
         }
-
         .social-link {
             color: rgba(255, 255, 255, 0.7);
             font-size: 3rem;
             transition: color 0.3s ease, transform 0.3s ease;
             text-decoration: none;
         }
-
         .social-link:hover {
             color: rgba(255, 124, 124, 0.8);
             transform: scale(1.1);
         }
-
         .ri-eye-fill,
         .ri-map-pin-2-fill {
             font-size: 1.1rem;
         }
-
         .music-card {
             width: 500px;
             height: auto;
@@ -209,7 +178,6 @@
             position: relative;
             background: transparent;
         }
-
         .music-card::after {
             content: '';
             position: absolute;
@@ -223,42 +191,36 @@
             z-index: -1;
             pointer-events: none;
         }
-
         .music-player {
             display: flex;
             gap: 15px;
             align-items: center;
             height: 70px;
         }
-
         .album-art {
             width: 70px;
             height: 70px;
             border-radius: 15px;
             object-fit: cover;
         }
-
         .music-content {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
-
         .song-info {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             height: 100%;
         }
-
         .song-title {
             font-family: 'Outfit', sans-serif;
             color: white;
             font-weight: 400;
             font-size: 1.1rem;
         }
-
         .artist-name {
             font-family: 'Outfit', sans-serif;
             color: rgba(255, 255, 255, 0.6);
@@ -266,15 +228,12 @@
             font-weight: 300;
             margin-top: 2px;
         }
-
         .music-progress-section {
             display: flex;
             align-items: center;
             gap: 3px;
             margin-top: auto;
-            /* Push to bottom */
         }
-
         .current-time,
         .total-time {
             font-family: 'Outfit', sans-serif;
@@ -283,15 +242,12 @@
             font-weight: 300;
             min-width: 32px;
         }
-
         .current-time {
             text-align: left;
         }
-
         .total-time {
             text-align: right;
         }
-
         .progress-bar {
             flex: 1;
             height: 4px;
@@ -299,20 +255,17 @@
             border-radius: 2px;
             overflow: hidden;
         }
-
         .progress {
             width: 30%;
             height: 100%;
             background: rgba(255, 124, 124, 0.8);
             border-radius: 2px;
         }
-
         .music-controls {
             display: flex;
             gap: 2px;
             align-items: center;
         }
-
         .control-btn {
             background: transparent;
             border: none;
@@ -321,28 +274,23 @@
             transition: color 0.3s, opacity 0.3s;
             padding: 3px;
         }
-
         .control-btn:not(.play-btn) {
             opacity: 0.6;
             font-size: 1.1rem;
             cursor: default;
         }
-
         .control-btn:not(.play-btn):hover {
             opacity: 0.8;
             color: rgba(255, 255, 255, 0.8);
             transform: none;
         }
-
         .play-btn:hover {
             color: rgba(255, 124, 124, 0.8);
         }
-
         .play-btn {
             opacity: 1;
             font-size: 1.75rem;
         }
-
         #enterOverlay {
             position: fixed;
             top: 0;
@@ -358,17 +306,14 @@
             opacity: 1;
             cursor: pointer;
         }
-
         #enterOverlay.fade-out {
             opacity: 0;
             pointer-events: none;
         }
-
         .enter-content {
             text-align: center;
             color: white;
         }
-
         .enter-text {
             font-size: 2rem;
             margin-bottom: 20px;
@@ -377,17 +322,14 @@
             font-family: 'Array', monospace, sans-serif;
             font-weight: normal;
         }
-
         .enter-subtext {
             font-size: 1.2rem;
             opacity: 0.8;
         }
-
         @font-face {
             font-family: 'ArrayFallback';
             src: local('Courier New'), local('Monaco'), local('Menlo'), local('Consolas'), monospace;
         }
-
         .card-content,
         .music-player {
             position: relative;
@@ -395,21 +337,13 @@
         }
     </style>
 </head>
-
 <body>
     <img id="imageBackground" src="images/background.jpg" alt="Background">
-    <!-- Video Background
-    <video id="videoBackground" autoplay muted loop playsinline>
-        <source src="media/background.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video> -->
-
     <div id="enterOverlay">
         <div class="enter-content">
             <div class="enter-text">click anywhere or dont?</div>
         </div>
     </div>
-
     <div class="cards-container">
         <div class="card">
             <div class="card-content">
@@ -468,20 +402,13 @@
             </div>
         </div>
     </div>
-
     <script>
-        // Create dots overlay
         const dotsOverlay = document.createElement('div');
         dotsOverlay.className = 'dots-overlay';
         document.body.appendChild(dotsOverlay);
-
-        // Get elements
         const enterOverlay = document.getElementById('enterOverlay');
-        //const videoBackground = document.getElementById('videoBackground');
         const imageBackground = document.getElementById('imageBackground');
         const cardsContainer = document.querySelector('.cards-container');
-
-        // Check if font loaded successfully
         const checkFontLoad = () => {
             const testText = document.createElement('span');
             testText.style.fontFamily = 'Array, monospace';
@@ -490,41 +417,26 @@
             testText.style.opacity = '0';
             testText.innerHTML = 'mmmmmmmmmmlli';
             document.body.appendChild(testText);
-
             setTimeout(() => {
                 const originalWidth = testText.offsetWidth;
                 testText.style.fontFamily = 'monospace';
                 setTimeout(() => {
                     const fallbackWidth = testText.offsetWidth;
                     if (Math.abs(originalWidth - fallbackWidth) < 5) {
-                        console.log('Array font may not have loaded, using fallback');
                         document.querySelector('.enter-text').style.fontFamily = 'monospace, sans-serif';
                         document.querySelector('.username').style.fontFamily = 'monospace, sans-serif';
-                    } else {
-                        console.log('Array font loaded successfully');
                     }
                     document.body.removeChild(testText);
                 }, 100);
             }, 100);
         };
-
-        // Ensure video is playing
-        //videoBackground.play().catch(function (error) {
-        //    console.log("Video autoplay failed:", error);
-        //});
-
-        // Music player functionality
         const musicPlayer = document.getElementById('musicPlayer');
         const playBtn = document.getElementById('playBtn');
         const currentTimeEl = document.querySelector('.current-time');
         const totalTimeEl = document.querySelector('.total-time');
         const progressBar = document.querySelector('.progress');
         const songTitleEl = document.querySelector('.song-title');
-
-        // Single song
         const currentSong = 'musics/Manifest (963hz) - Neffex.flac';
-
-        // Function to extract filename without extension
         function getSongInfo(filename) {
             const nameWithoutExt = filename.replace(/\.[^/.]+$/, "");
             const parts = nameWithoutExt.split(' - ');
@@ -533,19 +445,14 @@
                 artist: parts[1] || 'Unknown Artist'
             };
         }
-
-        // Format time from seconds to MM:SS
         function formatTime(seconds) {
             const mins = Math.floor(seconds / 60);
             const secs = Math.floor(seconds % 60);
             return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
         }
-
-        // Update progress bar and time
         function updateProgress() {
             const currentTime = musicPlayer.currentTime;
             const duration = musicPlayer.duration;
-
             if (duration) {
                 const progressPercent = (currentTime / duration) * 100;
                 progressBar.style.width = `${progressPercent}%`;
@@ -553,26 +460,16 @@
                 totalTimeEl.textContent = formatTime(duration);
             }
         }
-
-        // Load song function
         function loadSong() {
             musicPlayer.src = currentSong;
-
-            // Update song title and artist
             const songInfo = getSongInfo(currentSong.split('/').pop());
             songTitleEl.textContent = songInfo.title;
-
-            // Add this line if you have an artist element
             const artistEl = document.querySelector('.artist-name');
             if (artistEl) artistEl.textContent = songInfo.artist;
-
-            // Reset progress bar
             progressBar.style.width = '0%';
             currentTimeEl.textContent = '0:00';
             totalTimeEl.textContent = '0:00';
         }
-
-        // Play/pause functionality
         playBtn.addEventListener('click', () => {
             if (musicPlayer.paused) {
                 musicPlayer.play();
@@ -582,23 +479,13 @@
                 playBtn.innerHTML = '<i class="ri-play-fill"></i>';
             }
         });
-
-        // Update progress on timeupdate
         musicPlayer.addEventListener('timeupdate', updateProgress);
-
-        // Initialize song
         loadSong();
-
-        // Click to enter functionality
         enterOverlay.addEventListener('click', function () {
             enterOverlay.classList.add('fade-out');
-
-            // Start playing music instantly
             musicPlayer.volume = 0;
             musicPlayer.play().then(() => {
                 playBtn.innerHTML = '<i class="ri-pause-fill"></i>';
-
-                // Fade in volume over 2 seconds
                 let vol = 0;
                 const fadeInInterval = setInterval(() => {
                     vol += 0.05;
@@ -611,65 +498,38 @@
             }).catch(error => {
                 console.log("Music autoplay failed:", error);
             });
-
-            // Fade in video volume too if needed
-            //if (videoBackground.volume !== undefined) {
-            //    videoBackground.volume = 0;
-            //    let videoVol = 0;
-            //    const videoFadeInterval = setInterval(() => {
-            //        videoVol += 0.05;
-            //        if (videoVol >= 0.3) {
-            //            videoVol = 0.3;
-            //            clearInterval(videoFadeInterval);
-            //        }
-            //        videoBackground.volume = videoVol;
-            //    }, 100);
-            //}
-
-            // Hide overlay after fade animation
             setTimeout(function () {
                 enterOverlay.style.display = 'none';
             }, 1500);
         });
-
-        // Enter key to start
         window.addEventListener('keydown', function (e) {
             if (e.key === 'Enter' && enterOverlay.style.display !== 'none') {
                 enterOverlay.click();
             }
         });
-
-        // 3D effect for both cards together
         cardsContainer.addEventListener('mousemove', (e) => {
             const { left, top, width, height } = cardsContainer.getBoundingClientRect();
             const x = (e.clientX - left) / width - 0.5;
             const y = (e.clientY - top) / height - 0.5;
-
             const tiltX = y * 15;
             const tiltY = -x * 15;
             const lift = Math.abs(x * y) * 20 + 10;
-
             cardsContainer.style.transform = `translate(-50%, -50%) 
                       perspective(1000px) 
                       rotateX(${tiltX}deg) 
                       rotateY(${tiltY}deg) 
                       translateZ(${lift}px)`;
         });
-
         cardsContainer.addEventListener('mouseleave', () => {
             cardsContainer.style.transform = 'translate(-50%, -50%) perspective(1000px)';
         });
-
         cardsContainer.addEventListener('mouseenter', () => {
             cardsContainer.style.cursor = 'pointer';
         });
-
-        // View counter with 1-hour cooldown
         const viewCount = document.querySelector('.count');
         const lastViewTime = localStorage.getItem('lastViewTime');
         const now = Date.now();
         const oneHour = 3600000;
-
         if (!lastViewTime || (now - parseInt(lastViewTime)) > oneHour) {
             let count = parseInt(localStorage.getItem('viewCount') || 0);
             count++;
@@ -680,50 +540,25 @@
             const count = parseInt(localStorage.getItem('viewCount') || 0);
             viewCount.textContent = count;
         }
-
-        // Check font after page loads
         window.addEventListener('load', checkFontLoad);
         setTimeout(checkFontLoad, 1000);
-
-        // Dynamic passion text: Convert your midnight (00:00 GMT+1) to viewer's local time
         const passionText = document.querySelector('.timezone-note');
         const updatePassionText = () => {
-            // Germany (UTC+1) midnight = 23:00 UTC
-            // India (UTC+5:30) time when UTC is 23:00 = 23:00 + 5:30 = 04:30 next day
-
-            // Get viewer's timezone offset in minutes
-            const viewerOffset = new Date().getTimezoneOffset(); // minutes
-
-            // Convert to hours (with sign flip)
+            const viewerOffset = new Date().getTimezoneOffset();
             const viewerUTChours = -viewerOffset / 60;
-
-            // When it's midnight in Germany (00:00 Germany time = 23:00 UTC)
-            // Viewer's local time = 23:00 + viewer's UTC offset
             let viewerHour = 23 + viewerUTChours;
-
-            // Handle wrap-around
             if (viewerHour >= 24) viewerHour -= 24;
             if (viewerHour < 0) viewerHour += 24;
-
-            // For India (UTC+5:30 = -5.5 hours offset): 23 + 5.5 = 28.5 -> 4.5 = 4:30am
-            // For New York (UTC-5 = +5 hours offset): 23 - 5 = 18 = 6:00pm
-
             const viewerMinute = Math.round((viewerHour % 1) * 60);
             viewerHour = Math.floor(viewerHour);
-
-            // Format to 12-hour with AM/PM
             const ampm = viewerHour >= 12 ? 'pm' : 'am';
             let displayHours = viewerHour % 12;
             displayHours = displayHours ? displayHours : 12;
             const displayMinutes = viewerMinute.toString().padStart(2, '0');
-
             passionText.textContent = `my midnight is your ${displayHours}:${displayMinutes}${ampm}`;
         };
-
-        // Update on load and every minute
         updatePassionText();
         setInterval(updatePassionText, 60000);
     </script>
 </body>
-
 </html>
