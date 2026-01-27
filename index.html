@@ -688,44 +688,36 @@
         // Dynamic passion text: Convert your midnight (00:00 GMT+1) to viewer's local time
         const passionText = document.querySelector('.timezone-note');
         const updatePassionText = () => {
-            // Create a date object for your midnight in GMT+1
-            const now = new Date();
+            // Germany (UTC+1) midnight = 23:00 UTC
+            // India (UTC+5:30) time when UTC is 23:00 = 23:00 + 5:30 = 04:30 next day
 
-            // Get the viewer's current time
-            const viewerNow = new Date();
+            // Get viewer's timezone offset in minutes
+            const viewerOffset = new Date().getTimezoneOffset(); // minutes
 
-            // Calculate the viewer's timezone offset in minutes
-            const viewerOffset = viewerNow.getTimezoneOffset(); // in minutes
-            const viewerOffsetHours = -viewerOffset / 60; // convert to hours
+            // Convert to hours (with sign flip)
+            const viewerUTChours = -viewerOffset / 60;
 
-            // Your timezone is GMT+1 (Germany)
-            const yourTimezoneOffset = -1; // GMT+1 means UTC-1
+            // When it's midnight in Germany (00:00 Germany time = 23:00 UTC)
+            // Viewer's local time = 23:00 + viewer's UTC offset
+            let viewerHour = 23 + viewerUTChours;
 
-            // Calculate the difference between your timezone and viewer's timezone
-            const timeDifferenceHours = yourTimezoneOffset - viewerOffsetHours;
+            // Handle wrap-around
+            if (viewerHour >= 24) viewerHour -= 24;
+            if (viewerHour < 0) viewerHour += 24;
 
-            // Create your midnight time (00:00 in your timezone)
-            // We need to adjust for the time difference
-            const yourMidnightInViewerLocal = new Date();
-            yourMidnightInViewerLocal.setHours(0 - timeDifferenceHours, 0, 0, 0);
+            // For India (UTC+5:30 = -5.5 hours offset): 23 + 5.5 = 28.5 -> 4.5 = 4:30am
+            // For New York (UTC-5 = +5 hours offset): 23 - 5 = 18 = 6:00pm
 
-            // Get hours and minutes
-            let hours = yourMidnightInViewerLocal.getHours();
-            const minutes = yourMidnightInViewerLocal.getMinutes();
-
-            // Handle cases where hours might be negative or > 23
-            if (hours < 0) hours += 24;
-            if (hours >= 24) hours -= 24;
+            const viewerMinute = Math.round((viewerHour % 1) * 60);
+            viewerHour = Math.floor(viewerHour);
 
             // Format to 12-hour with AM/PM
-            const ampm = hours >= 12 ? 'pm' : 'am';
-            let displayHours = hours % 12;
-            displayHours = displayHours ? displayHours : 12; // the hour '0' should be '12'
-            const displayMinutes = minutes.toString().padStart(2, '0');
+            const ampm = viewerHour >= 12 ? 'pm' : 'am';
+            let displayHours = viewerHour % 12;
+            displayHours = displayHours ? displayHours : 12;
+            const displayMinutes = viewerMinute.toString().padStart(2, '0');
 
-            const formattedTime = `${displayHours}:${displayMinutes}${ampm}`;
-
-            passionText.textContent = `my midnight is your ${formattedTime}`;
+            passionText.textContent = `my midnight is your ${displayHours}:${displayMinutes}${ampm}`;
         };
 
         // Update on load and every minute
