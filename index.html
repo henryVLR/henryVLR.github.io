@@ -659,6 +659,32 @@
                 min-width: 25px;
             }
         }
+
+        @media (hover: none) and (pointer: coarse),
+        (max-width: 768px) {
+            .cards-container {
+                transform: translate(-50%, -50%) !important;
+                transition: none !important;
+            }
+
+            .cards-container:hover {
+                transform: translate(-50%, -50%) !important;
+            }
+
+            /* Also disable the mousemove event listener for mobile */
+            .cards-container {
+                pointer-events: none;
+                /* Or add a class in JavaScript */
+            }
+
+            /* Re-enable pointer events for interactive elements inside */
+            .card,
+            .music-card,
+            .social-link,
+            .control-btn {
+                pointer-events: auto;
+            }
+        }
     </style>
 </head>
 
@@ -935,17 +961,6 @@
 
         updatePassionText();
         setInterval(updatePassionText, 60000);
-
-        // Add this at the end of your script
-        if ('ontouchstart' in window || window.innerWidth <= 768) {
-            // Remove the mousemove event listener for 3D effect
-            cardsContainer.removeEventListener('mousemove', /* your function */);
-            cardsContainer.removeEventListener('mouseleave', /* your function */);
-            cardsContainer.removeEventListener('mouseenter', /* your function */);
-
-            // Reset transform
-            cardsContainer.style.transform = 'translate(-50%, -50%)';
-        }
     </script>
 </body>
 
