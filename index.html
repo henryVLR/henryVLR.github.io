@@ -2,15 +2,22 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>Seven</title>
     <style>
         @font-face {
             font-family: 'Array';
-            src: url('fonts/Array-Regular.ttf') format('truetype');
+            src: url('fonts/Array-Wide.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
+        }
+
+        body,
+        html,
+        * {
+            cursor: url('media/cursor.cur') 17 15, auto !important;
         }
 
         body {
@@ -22,6 +29,18 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+        }
+
+        * {
+            cursor: url('media/cursor.cur') 17 15, auto;
+        }
+
+        a,
+        button,
+        .social-link,
+        .control-btn,
+        #enterOverlay {
+            cursor: url('media/cursor.cur') 17 15, pointer;
         }
 
         #imageBackground {
@@ -61,8 +80,12 @@
             transition: transform 0.175s ease;
         }
 
+        .card,
+        .music-card {
+            width: 600px;
+        }
+
         .card {
-            width: 500px;
             height: auto;
             backdrop-filter: blur(2.5px);
             -webkit-backdrop-filter: blur(2.5px);
@@ -105,11 +128,13 @@
             align-items: flex-start;
             gap: 15px;
             margin-bottom: 15px;
+            flex-direction: row;
         }
 
         .profile-pic {
             width: 82px;
             height: 82px;
+            border-radius: 50%;
             object-fit: cover;
             display: flex;
             align-items: center;
@@ -194,7 +219,6 @@
         }
 
         .music-card {
-            width: 500px;
             height: auto;
             backdrop-filter: blur(2.5px);
             -webkit-backdrop-filter: blur(2.5px);
@@ -312,15 +336,18 @@
             background: transparent;
             border: none;
             color: rgba(255, 255, 255, 0.8);
-            cursor: pointer;
             transition: color 0.3s, opacity 0.3s;
             padding: 3px;
+            cursor: url('media/cursor.cur') 17 15, pointer !important;
+            pointer-events: auto !important;
+            /* Ensure clicks go through */
         }
 
         .control-btn:not(.play-btn) {
             opacity: 0.6;
             font-size: 1.1rem;
-            cursor: default;
+            cursor: url('media/cursor.cur') 17 15, pointer !important;
+            /* Change from default to pointer */
         }
 
         .control-btn:not(.play-btn):hover {
@@ -336,6 +363,7 @@
         .play-btn {
             opacity: 1;
             font-size: 1.75rem;
+            cursor: url('media/cursor.cur') 17 15, pointer !important;
         }
 
         #enterOverlay {
@@ -351,7 +379,6 @@
             align-items: center;
             transition: opacity 1.5s ease;
             opacity: 1;
-            cursor: pointer;
         }
 
         #enterOverlay.fade-out {
@@ -387,6 +414,250 @@
         .music-player {
             position: relative;
             z-index: 1;
+        }
+
+        /* Responsive styles for smaller devices */
+        @media (max-width: 768px) {
+
+            .card,
+            .music-card {
+                width: 90vw;
+                max-width: 400px;
+                padding: 15px;
+            }
+
+            .cards-container {
+                width: 100%;
+                padding: 0 10px;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+
+            .profile-pic {
+                width: 80px;
+                height: 80px;
+            }
+
+            .profile-svg {
+                width: 60px;
+                height: 60px;
+            }
+
+            .profile-text {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .username {
+                font-size: 1.8rem;
+                margin-bottom: 8px;
+            }
+
+            .interests {
+                font-size: 0.95rem;
+                margin-bottom: 5px;
+            }
+
+            .timezone-note {
+                font-size: 0.85rem;
+            }
+
+            .social-icons {
+                margin-top: 25px;
+                margin-bottom: 35px;
+            }
+
+            .social-link {
+                font-size: 2.5rem;
+            }
+
+            .views-and-location {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin-top: 15px;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .music-player {
+                height: 60px;
+            }
+
+            .album-art {
+                width: 60px;
+                height: 60px;
+            }
+
+            .song-title {
+                font-size: 1rem;
+            }
+
+            .artist-name {
+                font-size: 0.85rem;
+            }
+
+            .music-controls {
+                gap: 1px;
+            }
+
+            .play-btn {
+                font-size: 1.5rem;
+            }
+
+            .control-btn:not(.play-btn) {
+                font-size: 1rem;
+            }
+
+            .enter-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .card,
+            .music-card {
+                width: 95vw;
+                max-width: 350px;
+                padding: 15px 12px;
+            }
+
+            .profile-pic {
+                width: 75px;
+                height: 75px;
+            }
+
+            .profile-svg {
+                width: 55px;
+                height: 55px;
+            }
+
+            .username {
+                font-size: 1.6rem;
+            }
+
+            .interests {
+                font-size: 0.9rem;
+            }
+
+            .timezone-note {
+                font-size: 0.8rem;
+            }
+
+            .social-link {
+                font-size: 2.2rem;
+            }
+
+            .music-player {
+                gap: 10px;
+                height: 55px;
+            }
+
+            .album-art {
+                width: 55px;
+                height: 55px;
+                border-radius: 12px;
+            }
+
+            .song-title {
+                font-size: 0.95rem;
+            }
+
+            .artist-name {
+                font-size: 0.8rem;
+            }
+
+            .current-time,
+            .total-time {
+                font-size: 0.7rem;
+                min-width: 28px;
+            }
+
+            .enter-text {
+                font-size: 1.3rem;
+                margin-bottom: 15px;
+                letter-spacing: 1px;
+            }
+
+            /* Adjust 3D effect for mobile */
+            .cards-container {
+                transform: translate(-50%, -50%) perspective(800px);
+            }
+
+            .cards-container:hover {
+                transform: translate(-50%, -50%) perspective(800px);
+            }
+        }
+
+        /* For very small screens (iPhone SE etc.) */
+        @media (max-width: 375px) {
+
+            .card,
+            .music-card {
+                width: 92vw;
+                max-width: 320px;
+                padding: 12px;
+            }
+
+            .profile-pic {
+                width: 70px;
+                height: 70px;
+            }
+
+            .profile-svg {
+                width: 50px;
+                height: 50px;
+            }
+
+            .username {
+                font-size: 1.5rem;
+            }
+
+            .interests {
+                font-size: 0.85rem;
+            }
+
+            .timezone-note {
+                font-size: 0.75rem;
+            }
+
+            .social-link {
+                font-size: 2rem;
+            }
+
+            .music-player {
+                height: 50px;
+            }
+
+            .album-art {
+                width: 50px;
+                height: 50px;
+            }
+
+            .music-progress-section {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .progress-bar {
+                order: 1;
+                width: 100%;
+                margin-top: 5px;
+            }
+
+            .current-time,
+            .total-time {
+                min-width: 25px;
+            }
         }
     </style>
 </head>
@@ -498,6 +769,46 @@
         const progressBar = document.querySelector('.progress');
         const songTitleEl = document.querySelector('.song-title');
         const currentSong = "musics/Manifest (963hz) - Neffex.mp3";
+
+        // View counter with Netlify Functions
+        async function updateViewCount() {
+            const viewCountEl = document.querySelector('.count');
+
+            try {
+                const response = await fetch('https://imhenry.netlify.app/.netlify/functions/view-counter', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                const data = await response.json();
+                viewCountEl.textContent = data.count;
+
+            } catch (error) {
+                console.error('View counter error, using fallback:', error);
+                // Fallback to localStorage with 1-hour cooldown
+                fallbackViewCount();
+            }
+        }
+
+        // Fallback to localStorage
+        function fallbackViewCount() {
+            const viewCountEl = document.querySelector('.count');
+            const lastViewTime = localStorage.getItem('lastViewTime');
+            const now = Date.now();
+            const oneHour = 3600000;
+
+            if (!lastViewTime || (now - parseInt(lastViewTime)) > oneHour) {
+                let count = parseInt(localStorage.getItem('viewCount') || 0);
+                count++;
+                viewCountEl.textContent = count;
+                localStorage.setItem('viewCount', count.toString());
+                localStorage.setItem('lastViewTime', now.toString());
+            } else {
+                const count = parseInt(localStorage.getItem('viewCount') || 0);
+                viewCountEl.textContent = count;
+            }
+        }
+
         function getSongInfo(filename) {
             const nameWithoutExt = filename.replace(/\.[^/.]+$/, "");
             const parts = nameWithoutExt.split(' - ');
@@ -506,11 +817,13 @@
                 artist: parts[1] || 'Unknown Artist'
             };
         }
+
         function formatTime(seconds) {
             const mins = Math.floor(seconds / 60);
             const secs = Math.floor(seconds % 60);
             return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
         }
+
         function updateProgress() {
             const currentTime = musicPlayer.currentTime;
             const duration = musicPlayer.duration;
@@ -521,6 +834,7 @@
                 totalTimeEl.textContent = formatTime(duration);
             }
         }
+
         function loadSong() {
             musicPlayer.src = currentSong;
             const songInfo = getSongInfo(currentSong.split('/').pop());
@@ -531,6 +845,7 @@
             currentTimeEl.textContent = '0:00';
             totalTimeEl.textContent = '0:00';
         }
+
         playBtn.addEventListener('click', () => {
             if (musicPlayer.paused) {
                 musicPlayer.play();
@@ -540,8 +855,10 @@
                 playBtn.innerHTML = '<i class="ri-play-fill"></i>';
             }
         });
+
         musicPlayer.addEventListener('timeupdate', updateProgress);
         loadSong();
+
         enterOverlay.addEventListener('click', function () {
             enterOverlay.classList.add('fade-out');
             musicPlayer.volume = 0;
@@ -563,11 +880,13 @@
                 enterOverlay.style.display = 'none';
             }, 1500);
         });
+
         window.addEventListener('keydown', function (e) {
             if (e.key === 'Enter' && enterOverlay.style.display !== 'none') {
                 enterOverlay.click();
             }
         });
+
         cardsContainer.addEventListener('mousemove', (e) => {
             const { left, top, width, height } = cardsContainer.getBoundingClientRect();
             const x = (e.clientX - left) / width - 0.5;
@@ -581,28 +900,23 @@
                       rotateY(${tiltY}deg) 
                       translateZ(${lift}px)`;
         });
+
         cardsContainer.addEventListener('mouseleave', () => {
             cardsContainer.style.transform = 'translate(-50%, -50%) perspective(1000px)';
         });
+
         cardsContainer.addEventListener('mouseenter', () => {
             cardsContainer.style.cursor = 'pointer';
         });
-        const viewCount = document.querySelector('.count');
-        const lastViewTime = localStorage.getItem('lastViewTime');
-        const now = Date.now();
-        const oneHour = 3600000;
-        if (!lastViewTime || (now - parseInt(lastViewTime)) > oneHour) {
-            let count = parseInt(localStorage.getItem('viewCount') || 0);
-            count++;
-            viewCount.textContent = count;
-            localStorage.setItem('viewCount', count.toString());
-            localStorage.setItem('lastViewTime', now.toString());
-        } else {
-            const count = parseInt(localStorage.getItem('viewCount') || 0);
-            viewCount.textContent = count;
-        }
-        window.addEventListener('load', checkFontLoad);
+
+        // Initialize view counter on page load
+        window.addEventListener('load', function () {
+            checkFontLoad();
+            updateViewCount(); // Call Netlify function counter
+        });
+
         setTimeout(checkFontLoad, 1000);
+
         const passionText = document.querySelector('.timezone-note');
         const updatePassionText = () => {
             const viewerOffset = new Date().getTimezoneOffset();
@@ -618,6 +932,7 @@
             const displayMinutes = viewerMinute.toString().padStart(2, '0');
             passionText.textContent = `my midnight is your ${displayHours}:${displayMinutes}${ampm}`;
         };
+
         updatePassionText();
         setInterval(updatePassionText, 60000);
     </script>
