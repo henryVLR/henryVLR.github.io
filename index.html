@@ -131,22 +131,6 @@
             flex-direction: row;
         }
 
-        .profile-pic {
-            width: 82px;
-            height: 82px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .profile-svg {
-            width: 70px;
-            height: 70px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
         .username {
             font-family: 'Array', monospace, sans-serif;
             font-size: 2rem;
@@ -203,7 +187,7 @@
 
         .social-link {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 3rem;
+            font-size: 3.5rem;
             transition: color 0.3s ease, transform 0.3s ease;
             text-decoration: none;
         }
@@ -439,14 +423,10 @@
                 margin-bottom: 20px;
             }
 
-            .profile-pic {
-                width: 80px;
-                height: 80px;
-            }
-
-            .profile-svg {
-                width: 70px;
-                height: 70px;
+            .profile-icon {
+                width: 100px;
+                height: 100px;
+                padding: 10px;
             }
 
             .profile-text {
@@ -457,13 +437,13 @@
             }
 
             .username {
-                font-size: 1.8rem;
-                margin-bottom: 8px;
+                font-size: 2rem;
+                margin-bottom: 7px;
             }
 
             .interests {
                 font-size: 0.95rem;
-                margin-bottom: 5px;
+                margin-bottom: 4px;
             }
 
             .timezone-note {
@@ -471,12 +451,12 @@
             }
 
             .social-icons {
-                margin-top: 25px;
-                margin-bottom: 35px;
+                margin-top: 20px;
+                margin-bottom: 20px;
             }
 
             .social-link {
-                font-size: 2.5rem;
+                font-size: 4rem;
             }
 
             .views-and-location {
@@ -531,16 +511,6 @@
                 padding: 15px 12px;
             }
 
-            .profile-pic {
-                width: 75px;
-                height: 75px;
-            }
-
-            .profile-svg {
-                width: 60px;
-                height: 60px;
-            }
-
             .username {
                 font-size: 1.6rem;
             }
@@ -554,7 +524,7 @@
             }
 
             .social-link {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
 
             .music-player {
@@ -606,16 +576,6 @@
                 width: 92vw;
                 max-width: 320px;
                 padding: 12px;
-            }
-
-            .profile-pic {
-                width: 70px;
-                height: 70px;
-            }
-
-            .profile-svg {
-                width: 50px;
-                height: 50px;
             }
 
             .username {
@@ -685,6 +645,13 @@
                 pointer-events: auto;
             }
         }
+
+        .profile-icon {
+            width: 75px;
+            height: 75px;
+            padding: 8px;
+            color: rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
 
@@ -699,14 +666,12 @@
         <div class="card">
             <div class="card-content">
                 <div class="profile-section">
-                    <!-- <img src="images/pfp.jpg" alt="Profile" class="profile-pic"> -->
-                    <div class="profile-pic">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="4 4 16 16" class="profile-svg">
-                            <path fill="currentColor"
-                                d="M12 12q-1.65 0-2.825-1.175T8 8q0-1.65 1.175-2.825T12 4q1.65 0 2.825 1.175T16 8q0 1.65-1.175 2.825T12 12Zm-6 8q-.825 0-1.413-.588T4 18v-.8q0-.85.438-1.563T5.6 14.55q1.55-.775 3.15-1.163T12 13q1.65 0 3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2v.8q0 .825-.588 1.413T18 20H6Z">
-                            </path>
-                        </svg>
-                    </div>
+                    <!-- <img src="images/pfp.jpg" alt="Profile" class="profile-icon"> -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="4 4 16 16" class="profile-icon">
+                        <path fill="currentColor"
+                            d="M12 12q-1.65 0-2.825-1.175T8 8q0-1.65 1.175-2.825T12 4q1.65 0 2.825 1.175T16 8q0 1.65-1.175 2.825T12 12Zm-6 8q-.825 0-1.413-.588T4 18v-.8q0-.85.438-1.563T5.6 14.55q1.55-.775 3.15-1.163T12 13q1.65 0 3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2v.8q0 .825-.588 1.413T18 20H6Z">
+                        </path>
+                    </svg>
                     <div class="profile-text">
                         <div class="username">seven</div>
                         <div class="interests">gamer, traveler, cinephile</div>
