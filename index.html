@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -11,6 +12,7 @@
             font-weight: normal;
             font-style: normal;
         }
+
         body {
             margin: 0;
             height: 100vh;
@@ -21,6 +23,7 @@
             -ms-user-select: none;
             user-select: none;
         }
+
         #imageBackground {
             position: fixed;
             top: 0;
@@ -31,6 +34,7 @@
             z-index: 0;
             opacity: 1;
         }
+
         .dots-overlay {
             position: fixed;
             top: 0;
@@ -42,6 +46,7 @@
             background: transparent url(https://skulls.lol/assets/skulls_dot.png) repeat 0 0;
             pointer-events: none;
         }
+
         .cards-container {
             position: fixed;
             top: 50%;
@@ -55,11 +60,12 @@
             z-index: 2;
             transition: transform 0.175s ease;
         }
+
         .card {
             width: 500px;
             height: auto;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(2.5px);
+            -webkit-backdrop-filter: blur(2.5px);
             border: 3px solid rgba(255, 124, 124, 0.5);
             border-radius: 25px;
             padding: 20px;
@@ -67,6 +73,7 @@
             position: relative;
             background: transparent;
         }
+
         .card::before {
             content: '';
             position: absolute;
@@ -78,6 +85,7 @@
             background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             opacity: 0;
         }
+
         .card::after {
             content: '';
             position: absolute;
@@ -91,12 +99,14 @@
             z-index: -1;
             pointer-events: none;
         }
+
         .profile-section {
             display: flex;
             align-items: flex-start;
             gap: 15px;
             margin-bottom: 15px;
         }
+
         .profile-pic {
             width: 82px;
             height: 82px;
@@ -104,11 +114,13 @@
             border: 3px solid rgba(255, 124, 124, 0.5);
             object-fit: cover;
         }
+
         .username {
             font-family: 'Array', monospace, sans-serif;
             font-size: 2rem;
             color: white;
         }
+
         .interests {
             font-family: 'Outfit', Arial, sans-serif;
             color: rgba(255, 255, 255, 0.8);
@@ -118,6 +130,7 @@
             font-weight: 600;
             margin-bottom: 3px;
         }
+
         .timezone-note {
             font-family: 'Outfit', Arial, sans-serif;
             color: rgba(255, 255, 255, 0.6);
@@ -126,6 +139,7 @@
             margin-top: 0;
             font-weight: 300;
         }
+
         .views-and-location {
             position: absolute;
             bottom: 15px;
@@ -138,6 +152,7 @@
             gap: 8px;
             font-weight: 300;
         }
+
         .views-and-location .divider {
             width: 2px;
             height: 15px;
@@ -145,6 +160,7 @@
             border-radius: 100px;
             margin: 0 2px;
         }
+
         .social-icons {
             display: flex;
             gap: 20px;
@@ -152,25 +168,29 @@
             margin-bottom: 40px;
             justify-content: center;
         }
+
         .social-link {
             color: rgba(255, 255, 255, 0.7);
             font-size: 3rem;
             transition: color 0.3s ease, transform 0.3s ease;
             text-decoration: none;
         }
+
         .social-link:hover {
             color: rgba(255, 124, 124, 0.8);
             transform: scale(1.1);
         }
+
         .ri-eye-fill,
         .ri-map-pin-2-fill {
             font-size: 1.1rem;
         }
+
         .music-card {
             width: 500px;
             height: auto;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(2.5px);
+            -webkit-backdrop-filter: blur(2.5px);
             border: 3px solid rgba(255, 124, 124, 0.5);
             border-radius: 25px;
             padding: 15px;
@@ -178,6 +198,7 @@
             position: relative;
             background: transparent;
         }
+
         .music-card::after {
             content: '';
             position: absolute;
@@ -191,36 +212,42 @@
             z-index: -1;
             pointer-events: none;
         }
+
         .music-player {
             display: flex;
             gap: 15px;
             align-items: center;
             height: 70px;
         }
+
         .album-art {
             width: 70px;
             height: 70px;
             border-radius: 15px;
             object-fit: cover;
         }
+
         .music-content {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
+
         .song-info {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             height: 100%;
         }
+
         .song-title {
             font-family: 'Outfit', sans-serif;
             color: white;
             font-weight: 400;
             font-size: 1.1rem;
         }
+
         .artist-name {
             font-family: 'Outfit', sans-serif;
             color: rgba(255, 255, 255, 0.6);
@@ -228,12 +255,14 @@
             font-weight: 300;
             margin-top: 2px;
         }
+
         .music-progress-section {
             display: flex;
             align-items: center;
             gap: 3px;
             margin-top: auto;
         }
+
         .current-time,
         .total-time {
             font-family: 'Outfit', sans-serif;
@@ -242,12 +271,15 @@
             font-weight: 300;
             min-width: 32px;
         }
+
         .current-time {
             text-align: left;
         }
+
         .total-time {
             text-align: right;
         }
+
         .progress-bar {
             flex: 1;
             height: 4px;
@@ -255,17 +287,20 @@
             border-radius: 2px;
             overflow: hidden;
         }
+
         .progress {
             width: 30%;
             height: 100%;
             background: rgba(255, 124, 124, 0.8);
             border-radius: 2px;
         }
+
         .music-controls {
             display: flex;
             gap: 2px;
             align-items: center;
         }
+
         .control-btn {
             background: transparent;
             border: none;
@@ -274,23 +309,28 @@
             transition: color 0.3s, opacity 0.3s;
             padding: 3px;
         }
+
         .control-btn:not(.play-btn) {
             opacity: 0.6;
             font-size: 1.1rem;
             cursor: default;
         }
+
         .control-btn:not(.play-btn):hover {
             opacity: 0.8;
             color: rgba(255, 255, 255, 0.8);
             transform: none;
         }
+
         .play-btn:hover {
             color: rgba(255, 124, 124, 0.8);
         }
+
         .play-btn {
             opacity: 1;
             font-size: 1.75rem;
         }
+
         #enterOverlay {
             position: fixed;
             top: 0;
@@ -306,14 +346,17 @@
             opacity: 1;
             cursor: pointer;
         }
+
         #enterOverlay.fade-out {
             opacity: 0;
             pointer-events: none;
         }
+
         .enter-content {
             text-align: center;
             color: white;
         }
+
         .enter-text {
             font-size: 2rem;
             margin-bottom: 20px;
@@ -322,14 +365,17 @@
             font-family: 'Array', monospace, sans-serif;
             font-weight: normal;
         }
+
         .enter-subtext {
             font-size: 1.2rem;
             opacity: 0.8;
         }
+
         @font-face {
             font-family: 'ArrayFallback';
             src: local('Courier New'), local('Monaco'), local('Menlo'), local('Consolas'), monospace;
         }
+
         .card-content,
         .music-player {
             position: relative;
@@ -337,8 +383,9 @@
         }
     </style>
 </head>
+
 <body>
-    <img id="imageBackground" src="images/background.jpg" alt="Background">
+    <img id="imageBackground" src="images/background.png" alt="Background">
     <div id="enterOverlay">
         <div class="enter-content">
             <div class="enter-text">click anywhere or dont?</div>
@@ -561,4 +608,5 @@
         setInterval(updatePassionText, 60000);
     </script>
 </body>
+
 </html>
