@@ -28,7 +28,19 @@
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
+            -webkit-touch-callout: none;
+            -khtml-user-select: none;
             user-select: none;
+        }
+
+        #imageBackground,
+        .album-art {
+            pointer-events: none;
+            -webkit-user-drag: none;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
         }
 
         * {
@@ -87,9 +99,9 @@
 
         .card {
             height: auto;
-            backdrop-filter: blur(2.5px);
-            -webkit-backdrop-filter: blur(2.5px);
-            border: 4px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            border: 3px solid rgba(255, 255, 255, 0.25);
             border-radius: 25px;
             padding: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -134,7 +146,8 @@
         .username {
             font-family: 'Array', monospace, sans-serif;
             font-size: 2rem;
-            color: white;
+            color: rgba(255, 255, 255, 0.75);
+            text-shadow: 0 0 12.5px rgba(255, 255, 255, 0.5);
         }
 
         .interests {
@@ -190,6 +203,7 @@
             font-size: 3.5rem;
             transition: color 0.3s ease, transform 0.3s ease;
             text-decoration: none;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
         }
 
         .social-link:hover {
@@ -204,9 +218,9 @@
 
         .music-card {
             height: auto;
-            backdrop-filter: blur(2.5px);
-            -webkit-backdrop-filter: blur(2.5px);
-            border: 4px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            border: 3px solid rgba(255, 255, 255, 0.25);
             border-radius: 25px;
             padding: 15px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -926,6 +940,23 @@
 
         updatePassionText();
         setInterval(updatePassionText, 60000);
+
+        // Disable right-click context menu
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        // Or if you want to be more comprehensive and also prevent keyboard shortcuts:
+        document.addEventListener('keydown', function (e) {
+            // Disable Ctrl+Shift+I (DevTools), Ctrl+Shift+J (Console), Ctrl+U (View Source)
+            if (e.ctrlKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'U' || e.key === 'u')) {
+                e.preventDefault();
+            }
+            // Disable F12 key
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+        });
     </script>
 </body>
 
