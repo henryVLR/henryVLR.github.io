@@ -66,7 +66,7 @@
             height: auto;
             backdrop-filter: blur(2.5px);
             -webkit-backdrop-filter: blur(2.5px);
-            border: 3px solid rgba(255, 124, 124, 0.5);
+            border: 4px solid rgba(255, 255, 255, 0.25);
             border-radius: 25px;
             padding: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -110,9 +110,16 @@
         .profile-pic {
             width: 82px;
             height: 82px;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 124, 124, 0.5);
             object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-svg {
+            width: 70px;
+            height: 70px;
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .username {
@@ -156,7 +163,7 @@
         .views-and-location .divider {
             width: 2px;
             height: 15px;
-            background: rgba(255, 124, 124, 0.25);
+            background: rgba(255, 255, 255, 0.25);
             border-radius: 100px;
             margin: 0 2px;
         }
@@ -177,7 +184,7 @@
         }
 
         .social-link:hover {
-            color: rgba(255, 124, 124, 0.8);
+            color: rgba(255, 255, 255, 0.8);
             transform: scale(1.1);
         }
 
@@ -191,7 +198,7 @@
             height: auto;
             backdrop-filter: blur(2.5px);
             -webkit-backdrop-filter: blur(2.5px);
-            border: 3px solid rgba(255, 124, 124, 0.5);
+            border: 4px solid rgba(255, 255, 255, 0.25);
             border-radius: 25px;
             padding: 15px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -291,7 +298,7 @@
         .progress {
             width: 30%;
             height: 100%;
-            background: rgba(255, 124, 124, 0.8);
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 2px;
         }
 
@@ -323,7 +330,7 @@
         }
 
         .play-btn:hover {
-            color: rgba(255, 124, 124, 0.8);
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .play-btn {
@@ -395,7 +402,14 @@
         <div class="card">
             <div class="card-content">
                 <div class="profile-section">
-                    <img src="images/pfp.jpg" alt="Profile" class="profile-pic">
+                    <!-- <img src="images/pfp.jpg" alt="Profile" class="profile-pic"> -->
+                    <div class="profile-pic">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="4 4 16 16" class="profile-svg">
+                            <path fill="currentColor"
+                                d="M12 12q-1.65 0-2.825-1.175T8 8q0-1.65 1.175-2.825T12 4q1.65 0 2.825 1.175T16 8q0 1.65-1.175 2.825T12 12Zm-6 8q-.825 0-1.413-.588T4 18v-.8q0-.85.438-1.563T5.6 14.55q1.55-.775 3.15-1.163T12 13q1.65 0 3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2v.8q0 .825-.588 1.413T18 20H6Z">
+                            </path>
+                        </svg>
+                    </div>
                     <div class="profile-text">
                         <div class="username">seven</div>
                         <div class="interests">gamer, traveler, cinephile</div>
