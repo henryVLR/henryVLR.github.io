@@ -1,1 +1,1 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/cfb38aa6-f0ad-43f4-b186-3303ad855e2a/deploy-status)](https://app.netlify.com/projects/itshenry/deploys)
+[![Site Deployment Status](https://github.com/henryVLR/henryVLR.github.io/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/henryVLR/henryVLR.github.io/actions/workflows/pages/pages-build-deployment)
