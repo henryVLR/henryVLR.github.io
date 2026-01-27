@@ -24,17 +24,6 @@
             user-select: none;
         }
 
-        /* #videoBackground {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-            opacity: 1;
-        }*/
-
         #imageBackground {
             position: fixed;
             top: 0;
@@ -83,18 +72,6 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             position: relative;
             background: transparent;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: inherit;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            opacity: 0;
         }
 
         .card::after {
@@ -228,7 +205,6 @@
             display: flex;
             gap: 15px;
             align-items: center;
-            height: 70px;
         }
 
         .album-art {
@@ -242,14 +218,6 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-        }
-
-        .song-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
         }
 
         .song-title {
@@ -271,8 +239,7 @@
             display: flex;
             align-items: center;
             gap: 3px;
-            margin-top: auto;
-            /* Push to bottom */
+            margin-top: 10px;
         }
 
         .current-time,
@@ -311,6 +278,7 @@
             display: flex;
             gap: 2px;
             align-items: center;
+            margin-left: 10px;
         }
 
         .control-btn {
@@ -318,29 +286,16 @@
             border: none;
             color: rgba(255, 255, 255, 0.8);
             cursor: pointer;
-            transition: color 0.3s, opacity 0.3s;
+            transition: color 0.3s;
             padding: 3px;
         }
 
-        .control-btn:not(.play-btn) {
-            opacity: 0.6;
-            font-size: 1.1rem;
-            cursor: default;
-        }
-
-        .control-btn:not(.play-btn):hover {
-            opacity: 0.8;
-            color: rgba(255, 255, 255, 0.8);
-            transform: none;
-        }
-
-        .play-btn:hover {
-            color: rgba(255, 124, 124, 0.8);
-        }
-
-        .play-btn {
-            opacity: 1;
+        .control-btn.play-btn {
             font-size: 1.75rem;
+        }
+
+        .control-btn.play-btn:hover {
+            color: rgba(255, 124, 124, 0.8);
         }
 
         #enterOverlay {
@@ -371,21 +326,9 @@
 
         .enter-text {
             font-size: 2rem;
-            margin-bottom: 20px;
             letter-spacing: 2px;
             text-transform: lowercase;
             font-family: 'Array', monospace, sans-serif;
-            font-weight: normal;
-        }
-
-        .enter-subtext {
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-
-        @font-face {
-            font-family: 'ArrayFallback';
-            src: local('Courier New'), local('Monaco'), local('Menlo'), local('Consolas'), monospace;
         }
 
         .card-content,
@@ -398,11 +341,6 @@
 
 <body>
     <img id="imageBackground" src="images/background.jpg" alt="Background">
-    <!-- Video Background
-    <video id="videoBackground" autoplay muted loop playsinline>
-        <source src="media/background.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video> -->
 
     <div id="enterOverlay">
         <div class="enter-content">
@@ -446,22 +384,18 @@
             <div class="music-player">
                 <img src="images/demo-album-icon.jpg" alt="Album Art" class="album-art">
                 <div class="music-content">
-                    <div class="song-info">
-                        <div>
-                            <div class="song-title">Manifest (963hz)</div>
-                            <div class="artist-name">Neffex</div>
+                    <div>
+                        <div class="song-title">Manifest (963hz)</div>
+                        <div class="artist-name">Neffex</div>
+                    </div>
+                    <div class="music-progress-section">
+                        <div class="current-time">0:00</div>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
                         </div>
-                        <div class="music-progress-section">
-                            <div class="current-time">0:00</div>
-                            <div class="progress-bar">
-                                <div class="progress"></div>
-                            </div>
-                            <div class="total-time">0:00</div>
-                            <div class="music-controls">
-                                <button class="control-btn" id="prevBtn"><i class="ri-skip-back-fill"></i></button>
-                                <button class="control-btn play-btn" id="playBtn"><i class="ri-play-fill"></i></button>
-                                <button class="control-btn" id="nextBtn"><i class="ri-skip-forward-fill"></i></button>
-                            </div>
+                        <div class="total-time">0:00</div>
+                        <div class="music-controls">
+                            <button class="control-btn play-btn" id="playBtn"><i class="ri-play-fill"></i></button>
                         </div>
                     </div>
                 </div>
@@ -477,41 +411,19 @@
 
         // Get elements
         const enterOverlay = document.getElementById('enterOverlay');
-        //const videoBackground = document.getElementById('videoBackground');
         const imageBackground = document.getElementById('imageBackground');
         const cardsContainer = document.querySelector('.cards-container');
 
-        // Check if font loaded successfully
+        // Check if font loaded successfully (simplified)
         const checkFontLoad = () => {
-            const testText = document.createElement('span');
-            testText.style.fontFamily = 'Array, monospace';
-            testText.style.fontSize = '40px';
-            testText.style.position = 'absolute';
-            testText.style.opacity = '0';
-            testText.innerHTML = 'mmmmmmmmmmlli';
-            document.body.appendChild(testText);
-
-            setTimeout(() => {
-                const originalWidth = testText.offsetWidth;
-                testText.style.fontFamily = 'monospace';
-                setTimeout(() => {
-                    const fallbackWidth = testText.offsetWidth;
-                    if (Math.abs(originalWidth - fallbackWidth) < 5) {
-                        console.log('Array font may not have loaded, using fallback');
-                        document.querySelector('.enter-text').style.fontFamily = 'monospace, sans-serif';
-                        document.querySelector('.username').style.fontFamily = 'monospace, sans-serif';
-                    } else {
-                        console.log('Array font loaded successfully');
-                    }
-                    document.body.removeChild(testText);
-                }, 100);
-            }, 100);
+            if (!document.fonts.check('12px Array')) {
+                console.log('Array font not loaded, using fallback');
+                document.querySelector('.enter-text').style.fontFamily = 'monospace, sans-serif';
+                document.querySelector('.username').style.fontFamily = 'monospace, sans-serif';
+            } else {
+                console.log('Array font loaded successfully');
+            }
         };
-
-        // Ensure video is playing
-        //videoBackground.play().catch(function (error) {
-        //    console.log("Video autoplay failed:", error);
-        //});
 
         // Music player functionality
         const musicPlayer = document.getElementById('musicPlayer');
@@ -520,6 +432,7 @@
         const totalTimeEl = document.querySelector('.total-time');
         const progressBar = document.querySelector('.progress');
         const songTitleEl = document.querySelector('.song-title');
+        const artistEl = document.querySelector('.artist-name');
 
         // Single song
         const currentSong = 'musics/Manifest (963hz) - Neffex.flac';
@@ -561,10 +474,7 @@
             // Update song title and artist
             const songInfo = getSongInfo(currentSong.split('/').pop());
             songTitleEl.textContent = songInfo.title;
-
-            // Add this line if you have an artist element
-            const artistEl = document.querySelector('.artist-name');
-            if (artistEl) artistEl.textContent = songInfo.artist;
+            artistEl.textContent = songInfo.artist;
 
             // Reset progress bar
             progressBar.style.width = '0%';
@@ -612,20 +522,6 @@
                 console.log("Music autoplay failed:", error);
             });
 
-            // Fade in video volume too if needed
-            //if (videoBackground.volume !== undefined) {
-            //    videoBackground.volume = 0;
-            //    let videoVol = 0;
-            //    const videoFadeInterval = setInterval(() => {
-            //        videoVol += 0.05;
-            //        if (videoVol >= 0.3) {
-            //            videoVol = 0.3;
-            //            clearInterval(videoFadeInterval);
-            //        }
-            //        videoBackground.volume = videoVol;
-            //    }, 100);
-            //}
-
             // Hide overlay after fade animation
             setTimeout(function () {
                 enterOverlay.style.display = 'none';
@@ -639,8 +535,15 @@
             }
         });
 
-        // 3D effect for both cards together
+        // 3D effect for both cards together (with throttling)
+        let lastTime = 0;
+        const throttleDelay = 16; // ~60fps
+        
         cardsContainer.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastTime < throttleDelay) return;
+            lastTime = now;
+
             const { left, top, width, height } = cardsContainer.getBoundingClientRect();
             const x = (e.clientX - left) / width - 0.5;
             const y = (e.clientY - top) / height - 0.5;
@@ -658,10 +561,6 @@
 
         cardsContainer.addEventListener('mouseleave', () => {
             cardsContainer.style.transform = 'translate(-50%, -50%) perspective(1000px)';
-        });
-
-        cardsContainer.addEventListener('mouseenter', () => {
-            cardsContainer.style.cursor = 'pointer';
         });
 
         // View counter with 1-hour cooldown
@@ -683,41 +582,42 @@
 
         // Check font after page loads
         window.addEventListener('load', checkFontLoad);
-        setTimeout(checkFontLoad, 1000);
 
         // Dynamic passion text: Convert your midnight (00:00 GMT+1) to viewer's local time
         const passionText = document.querySelector('.timezone-note');
         const updatePassionText = () => {
-            // Germany (UTC+1) midnight = 23:00 UTC
-            // India (UTC+5:30) time when UTC is 23:00 = 23:00 + 5:30 = 04:30 next day
-
-            // Get viewer's timezone offset in minutes
-            const viewerOffset = new Date().getTimezoneOffset(); // minutes
-
-            // Convert to hours (with sign flip)
-            const viewerUTChours = -viewerOffset / 60;
-
-            // When it's midnight in Germany (00:00 Germany time = 23:00 UTC)
-            // Viewer's local time = 23:00 + viewer's UTC offset
-            let viewerHour = 23 + viewerUTChours;
-
-            // Handle wrap-around
-            if (viewerHour >= 24) viewerHour -= 24;
-            if (viewerHour < 0) viewerHour += 24;
-
-            // For India (UTC+5:30 = -5.5 hours offset): 23 + 5.5 = 28.5 -> 4.5 = 4:30am
-            // For New York (UTC-5 = +5 hours offset): 23 - 5 = 18 = 6:00pm
-
-            const viewerMinute = Math.round((viewerHour % 1) * 60);
-            viewerHour = Math.floor(viewerHour);
-
-            // Format to 12-hour with AM/PM
-            const ampm = viewerHour >= 12 ? 'pm' : 'am';
-            let displayHours = viewerHour % 12;
-            displayHours = displayHours ? displayHours : 12;
-            const displayMinutes = viewerMinute.toString().padStart(2, '0');
-
-            passionText.textContent = `my midnight is your ${displayHours}:${displayMinutes}${ampm}`;
+            try {
+                // Germany (UTC+1) midnight = 23:00 UTC
+                const germanyMidnightUTC = new Date();
+                germanyMidnightUTC.setUTCHours(23, 0, 0, 0);
+                
+                // Convert to viewer's local time
+                const localTime = germanyMidnightUTC.toLocaleTimeString([], { 
+                    hour: 'numeric', 
+                    minute: '2-digit',
+                    hour12: true 
+                });
+                
+                passionText.textContent = `my midnight is your ${localTime}`;
+            } catch (error) {
+                // Fallback to simpler calculation
+                const viewerOffset = new Date().getTimezoneOffset();
+                const viewerUTChours = -viewerOffset / 60;
+                let viewerHour = 23 + viewerUTChours;
+                
+                if (viewerHour >= 24) viewerHour -= 24;
+                if (viewerHour < 0) viewerHour += 24;
+                
+                const viewerMinute = Math.round((viewerHour % 1) * 60);
+                viewerHour = Math.floor(viewerHour);
+                
+                const ampm = viewerHour >= 12 ? 'pm' : 'am';
+                let displayHours = viewerHour % 12;
+                displayHours = displayHours ? displayHours : 12;
+                const displayMinutes = viewerMinute.toString().padStart(2, '0');
+                
+                passionText.textContent = `my midnight is your ${displayHours}:${displayMinutes}${ampm}`;
+            }
         };
 
         // Update on load and every minute
