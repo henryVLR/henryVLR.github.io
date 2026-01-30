@@ -266,8 +266,9 @@
     .song-info {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start;
       height: 100%;
+      margin-top: -4px;
     }
 
     .song-title {
@@ -275,6 +276,7 @@
       color: rgba(255, 255, 255, 0.75);
       font-weight: 400;
       font-size: 1.1rem;
+      margin-top: 8px;
     }
 
     .artist-name {
@@ -661,9 +663,9 @@
     }
 
     .profile-icon {
-      width: 75px;
-      height: 75px;
-      padding: 8px;
+      width: 80px;
+      height: 80px;
+      padding: 4px 4px 8px 4px;
       color: rgba(255, 255, 255, 0.5);
     }
   </style>
@@ -681,10 +683,12 @@
       <div class="card-content">
         <div class="profile-section">
           <!-- <img src="images/pfp.jpg" alt="Profile" class="profile-icon"> -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="4 4 16 16" class="profile-icon">
-            <path fill="currentColor"
-              d="M12 12q-1.65 0-2.825-1.175T8 8q0-1.65 1.175-2.825T12 4q1.65 0 2.825 1.175T16 8q0 1.65-1.175 2.825T12 12Zm-6 8q-.825 0-1.413-.588T4 18v-.8q0-.85.438-1.563T5.6 14.55q1.55-.775 3.15-1.163T12 13q1.65 0 3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2v.8q0 .825-.588 1.413T18 20H6Z">
-            </path>
+          <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" class="profile-icon">
+            <path d="M493.176 255.588L255.588 18L18.0001 255.588L255.588 493.176L493.176 255.588Z" stroke="white"
+              stroke-opacity="0.5" stroke-width="16" />
+            <path
+              d="M268.8 375.04C269.92 371.307 270.947 366.64 271.88 361.04C272.813 355.627 273.56 350.213 274.12 344.8C274.68 339.2 275.147 334.067 275.52 329.4C275.893 324.733 276.08 321.373 276.08 319.32C276.08 308.68 275.987 298.04 275.8 287.4C275.8 276.76 275.8 266.12 275.8 255.48L272.16 251.56L237.72 266.96V324.36C237.72 336.12 240.24 342.933 245.28 344.8V349H193.76V344.8C196 343.867 197.773 342 199.08 339.2C200.573 336.213 201.32 332.107 201.32 326.88V179.6C201.32 174.933 201.227 170.733 201.04 167C200.853 163.267 200.387 159.813 199.64 156.64C199.08 153.467 198.24 150.387 197.12 147.4C196 144.413 194.6 141.333 192.92 138.16C196.653 139.467 201.04 140.12 206.08 140.12C212.24 140.12 218.68 139.093 225.4 137.04C232.307 134.987 239.68 132.093 247.52 128.36C243.787 132.84 241.173 138.813 239.68 146.28C238.373 153.747 237.72 162.333 237.72 172.04V247.64C245.747 242.413 252.933 237.187 259.28 231.96C265.627 226.733 272.16 220.573 278.88 213.48C282.053 216.467 284.947 219.173 287.56 221.6C290.173 223.84 292.787 225.893 295.4 227.76C298.2 229.627 301.093 231.493 304.08 233.36C307.067 235.04 310.52 236.813 314.44 238.68C313.693 241.293 313.04 244.093 312.48 247.08C312.107 249.88 311.733 253.52 311.36 258C311.173 262.48 310.987 267.987 310.8 274.52C310.613 281.053 310.52 289.173 310.52 298.88C310.52 307.093 310.52 313.907 310.52 319.32C310.707 324.547 310.893 328.84 311.08 332.2C311.267 335.56 311.547 338.36 311.92 340.6C312.293 342.653 312.667 344.613 313.04 346.48C309.307 347.787 305.48 349.56 301.56 351.8C297.827 354.04 294 356.56 290.08 359.36C286.347 362.16 282.8 365.053 279.44 368.04C276.08 371.027 273.093 373.92 270.48 376.72L268.8 375.04Z"
+              fill="white" fill-opacity="0.5" />
           </svg>
           <div class="profile-text">
             <div class="username">henry</div>
@@ -825,33 +829,33 @@
     }
 
     function loadSong() {
-  musicPlayer.src = currentSong;
-  
-  // Add error handling
-  musicPlayer.addEventListener('error', function(e) {
-    console.error("Error loading audio:", e);
-    console.error("Audio src:", musicPlayer.src);
-    console.error("Audio error code:", musicPlayer.error?.code);
-    
-    // Fallback or show error
-    songTitleEl.textContent = "Audio unavailable";
-    playBtn.disabled = true;
-  });
-  
-  // Add loadedmetadata event
-  musicPlayer.addEventListener('loadedmetadata', function() {
-    console.log("Audio loaded successfully, duration:", musicPlayer.duration);
-    totalTimeEl.textContent = formatTime(musicPlayer.duration);
-  });
-  
-  const songInfo = getSongInfo(currentSong.split('/').pop());
-  songTitleEl.textContent = songInfo.title;
-  const artistEl = document.querySelector('.artist-name');
-  if (artistEl) artistEl.textContent = songInfo.artist;
-  progressBar.style.width = '0%';
-  currentTimeEl.textContent = '0:00';
-  totalTimeEl.textContent = '0:00';
-}
+      musicPlayer.src = currentSong;
+
+      // Add error handling
+      musicPlayer.addEventListener('error', function (e) {
+        console.error("Error loading audio:", e);
+        console.error("Audio src:", musicPlayer.src);
+        console.error("Audio error code:", musicPlayer.error?.code);
+
+        // Fallback or show error
+        songTitleEl.textContent = "Audio unavailable";
+        playBtn.disabled = true;
+      });
+
+      // Add loadedmetadata event
+      musicPlayer.addEventListener('loadedmetadata', function () {
+        console.log("Audio loaded successfully, duration:", musicPlayer.duration);
+        totalTimeEl.textContent = formatTime(musicPlayer.duration);
+      });
+
+      const songInfo = getSongInfo(currentSong.split('/').pop());
+      songTitleEl.textContent = songInfo.title;
+      const artistEl = document.querySelector('.artist-name');
+      if (artistEl) artistEl.textContent = songInfo.artist;
+      progressBar.style.width = '0%';
+      currentTimeEl.textContent = '0:00';
+      totalTimeEl.textContent = '0:00';
+    }
 
     playBtn.addEventListener('click', () => {
       if (musicPlayer.paused) {
@@ -867,63 +871,63 @@
     loadSong();
 
     enterOverlay.addEventListener('click', function () {
-  enterOverlay.classList.add('fade-out');
-  
-  // First ensure the audio is properly loaded
-  if (musicPlayer.readyState < 2) { // HAVE_CURRENT_DATA or less
-    console.log("Audio not loaded yet, loading...");
-    loadSong();
-  }
-  
-  // Set volume to 0 before playing
-  musicPlayer.volume = 0;
-  
-  // Play with better error handling
-  const playPromise = musicPlayer.play();
-  
-  if (playPromise !== undefined) {
-    playPromise.then(() => {
-      console.log("Audio playback started successfully");
-      playBtn.innerHTML = '<i class="ri-pause-fill"></i>';
-      
-      // Fade in volume
-      let vol = 0;
-      const fadeInInterval = setInterval(() => {
-        vol += 0.05;
-        if (vol >= 0.7) {
-          vol = 0.7;
-          clearInterval(fadeInInterval);
-        }
-        musicPlayer.volume = vol;
-      }, 100);
-      
-    }).catch(error => {
-      console.error("Music autoplay failed:", error);
-      console.error("Error details:", {
-        name: error.name,
-        message: error.message,
-        audioSrc: musicPlayer.src,
-        audioError: musicPlayer.error
-      });
-      
-      // Try to diagnose the issue
-      if (error.name === "NotSupportedError") {
-        console.log("The audio format or source might not be supported");
-        // Check if the audio element has a source
-        if (!musicPlayer.src || musicPlayer.src === window.location.href) {
-          console.log("Audio element has no source set");
-        }
+      enterOverlay.classList.add('fade-out');
+
+      // First ensure the audio is properly loaded
+      if (musicPlayer.readyState < 2) { // HAVE_CURRENT_DATA or less
+        console.log("Audio not loaded yet, loading...");
+        loadSong();
       }
-      
-      // Still hide the overlay but don't play music
-      playBtn.innerHTML = '<i class="ri-play-fill"></i>';
+
+      // Set volume to 0 before playing
+      musicPlayer.volume = 0;
+
+      // Play with better error handling
+      const playPromise = musicPlayer.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          console.log("Audio playback started successfully");
+          playBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+
+          // Fade in volume
+          let vol = 0;
+          const fadeInInterval = setInterval(() => {
+            vol += 0.05;
+            if (vol >= 0.7) {
+              vol = 0.7;
+              clearInterval(fadeInInterval);
+            }
+            musicPlayer.volume = vol;
+          }, 100);
+
+        }).catch(error => {
+          console.error("Music autoplay failed:", error);
+          console.error("Error details:", {
+            name: error.name,
+            message: error.message,
+            audioSrc: musicPlayer.src,
+            audioError: musicPlayer.error
+          });
+
+          // Try to diagnose the issue
+          if (error.name === "NotSupportedError") {
+            console.log("The audio format or source might not be supported");
+            // Check if the audio element has a source
+            if (!musicPlayer.src || musicPlayer.src === window.location.href) {
+              console.log("Audio element has no source set");
+            }
+          }
+
+          // Still hide the overlay but don't play music
+          playBtn.innerHTML = '<i class="ri-play-fill"></i>';
+        });
+      }
+
+      setTimeout(function () {
+        enterOverlay.style.display = 'none';
+      }, 1500);
     });
-  }
-  
-  setTimeout(function () {
-    enterOverlay.style.display = 'none';
-  }, 1500);
-});
 
     window.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' && enterOverlay.style.display !== 'none') {
